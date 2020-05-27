@@ -1,0 +1,57 @@
+1. Files folder ft_carss:
+	######## FT utils files ####################
+
+	1. ft_lib.h  
+	2. ft_utils_client.c    # for client in c
+	3. ft_utils_server.cpp  # for server in c++
+
+	######## TEST files ########################
+
+	4. main_c.c    -- client in c 
+	5. main_py.py  -- client in python
+	6. mymid.cpp   -- server, carss with FT
+
+	######## Makefile ##########################
+
+	6. Makefile  
+
+2. Notes
+	1. In Makefile, the following lines are added to the original for FT
+	################ compile main_c.c.  #####################
+	test_main_c: main_c.c ft_utils_client.c ft_lib.h tag_lib.o mid_queue.o common.o 
+
+	################ libft.so           #################
+	ft_server_lib.o: ft_utils_server.cpp #ft_lib.h
+		$(CXX) $(INCL_FLAGS) $(CPP_FLAGS) $(MIDFLAGS) -o ft_server_lib.o ft_utils_server.cpp -c -fPIC
+	ft_client_lib.o: ft_utils_client.c #ft_lib.h
+		$(GCC) $(INCL_FLAGS) $(MIDFLAGS) -o ft_client_lib.o ft_utils_client.c -c -fPIC
+
+	libft.so: tag_state.o tag_lib.o tag_frame.o libmid.so ft_server_lib.o ft_client_lib.o
+		$(EDIT_LD_PATH) $(CXX) -shared -o lib/libft.so tag_lib.o ft_server_lib.o ft_client_lib.o $(LOAD_MID)
+
+	2. In mymid.cpp, the following lines are added to the original for FT
+	// ---- For FT ----
+	#include "ft_utils_server.cpp"
+
+	// ---- For FT ----
+	static int FJ_fd;
+	static ft_jobs_t *FJ;
+
+	/* ---Create a FT jobs list ----*/
+	if((res = init_ft_jobs(&FJ_fd, &FJ, true)) < 0)
+	{
+		fprintf(stderr, "Failed to init ft jobs list");
+		return EXIT_FAILURE;
+	}
+	printf("Initialized FT jobs list.\n");
+	
+	/* ---Launch FT manager ----*/
+	printf("Start launcing ft manager...\n");
+	if((res = launch_ft_man(FJ)) < 0)
+	{
+		fprintf(stderr, "Failed to launch ft manager");
+		return EXIT_FAILURE;
+	}
+	printf("Setup ft manager.\n\n");
+	//-------------------------------
+
