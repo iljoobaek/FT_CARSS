@@ -54,4 +54,15 @@
 	}
 	printf("Setup ft manager.\n\n");
 	//-------------------------------
+	
+3. Implementation
+	1. Replace Makefile and mymid.cpp in original cuMddilerware folder
+	2. Add ft_lib.h , ft_utils_client.c , ft_utils_server.cpp, main_c.c, main_py.py in cuMiddleware folder
+	3. run make, compiling middlerware
+	4. run make test_main, compiling c program
+	5. run ./mid, running the server
+	6. run ./main_c.o main 0, for the first main in c
+	7. run ./main_c.o replica 0, for the first replica in c
+	8. run python3 main_py.py main 1, for the second main in python
+	9. run python3 main_py.py replica 1, for the second replica in python
 
