@@ -28,9 +28,9 @@ int main(int argc, char **argv) {
 	pid_t pid = getpid();
 	pid_t tid = gettid();
 
-	/* Setup the FT manager */
+	/* Init FT manager and wait for the wake up from the server */
 	int res;
-	res = setup_ft_manager(pid, tid, ft_job_name, num);
+	res = ft_init_wait(pid, tid, ft_job_name, num);
 	
 	printf("Start working!\n");
     printf("========================================================\n");
