@@ -9,11 +9,14 @@
 
 	4. main_c.c    -- client in c 
 	5. main_py.py  -- client in python
-	6. mymid.cpp   -- server, carss with FT
-
+	6. main_py_with_checkpoint.py -- client in python with dummy checkpoint logic
+	7. mymid.cpp   -- server, carss with FT 
+	
 	######## Makefile ##########################
 
-	6. Makefile  
+	8. Makefile  
+	
+	Note: 1 ~ 6 are created by Ruiying. In 7 and 8, new lines are added as discussed below.
 
 2. Notes
 	1. In Makefile, the following lines are added to the original for FT
