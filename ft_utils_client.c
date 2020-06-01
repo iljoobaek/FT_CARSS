@@ -2,7 +2,7 @@
 	FT(fault tolerance) manager utilise(c) on Client side
 	Following shows how these functions are related to each other:
 	
-	- setup_ft_manager  --- called in client
+	- ft_init_wait  --- called in client
 	   - tag_ft_job_begin                
 	     - init_ft_jobs
 	     - build_ft_job
@@ -280,12 +280,12 @@ int tag_ft_job_begin(pid_t pid, pid_t tid,
 //==========================================================================================================
 
 /*
- * Name: setup_ft_manager
+ * Name: ft_init_wait
  * Function: Called in client program to setup ft manager:
  *           1. Wait to be triggered by server
  *           2. Keep updating heartbeat 
  */
-int setup_ft_manager(pid_t pid, pid_t tid, 
+int ft_init_wait(pid_t pid, pid_t tid, 
 	const char* ft_job_name, int num){
 	
 	int res;
