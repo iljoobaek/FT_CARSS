@@ -3,7 +3,7 @@
 # Functions used from ft_utils_client.c:
 #   1. tag_job_begin
 #   2. tag_job_end
-#   3. setup_ft_manager
+#   3. ft_init_wait
 # Ruiying Wu (ECE)
 # 5/2020
 
@@ -24,8 +24,8 @@ libft.tag_job_begin.argtypes = [c_uint, c_uint, c_char_p, c_longlong,
 libft.tag_job_end.restype = c_int
 libft.tag_job_end.argtypes = [c_uint, c_uint, c_char_p]
 
-libft.setup_ft_manager.restype = c_int
-libft.setup_ft_manager.argtypes = [c_uint, c_uint, c_char_p, c_int]
+libft.ft_init_wait.restype = c_int
+libft.ft_init_wait.argtypes = [c_uint, c_uint, c_char_p, c_int]
 
 # Create python version of tag_job_begin
 def tag_job_begin_py(pid, tid, job_name, slacktime, first_flag, shareable_flag,required_mem):
@@ -39,10 +39,10 @@ def tag_job_end_py(pid, tid, job_name):
 	res = c_int(libft.tag_job_end(pid, tid, job_name))
 	return res
 
-# Create python version of setup_ft_manager
-def setup_ft_manager_py(pid, tid, job_name, num):
-	# print("Call the setup_ft_manager")
-	res = c_int(libft.setup_ft_manager(pid, tid, job_name, num))
+# Create python version of ft_init_wait
+def ft_init_wait_py(pid, tid, job_name, num):
+	# print("Call the ft_init_wait")
+	res = c_int(libft.ft_init_wait(pid, tid, job_name, num))
 	return res
 
 if __name__ == "__main__":
@@ -67,7 +67,7 @@ if __name__ == "__main__":
 	fiften = c_longlong(15)
 
 	# Set up the FT manager
-	res = setup_ft_manager_py(pid, tid, f_name, f_num)
+	res = ft_init_wait_py(pid, tid, f_name, f_num)
 
 	# Start the work
 	print("Start working!")
